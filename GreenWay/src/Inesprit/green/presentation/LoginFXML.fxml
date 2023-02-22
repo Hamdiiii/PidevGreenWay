@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Inesprit.green.presentation.LoginFXMLController">
+   <children>
+      <Pane prefHeight="426.0" prefWidth="278.0" style="-fx-background-color: azure;">
+         <children>
+            <ImageView fitHeight="233.0" fitWidth="307.0" layoutX="-36.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../Downloads/Sans%20titre(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="77.0" layoutY="213.0" prefHeight="34.0" prefWidth="125.0" text="GREEN WAY" textAlignment="CENTER" textFill="#8dc976">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="230.0" prefHeight="34.0" prefWidth="149.0" text="Recyclable-Product " textFill="#d7c193">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="278.0" layoutY="-4.0" prefHeight="434.0" prefWidth="323.0" style="-fx-background-color: Honeydew;">
+         <children>
+            <PasswordField fx:id="password" layoutX="31.0" layoutY="200.0" prefHeight="34.0" prefWidth="247.0" promptText="Entre password" />
+            <TextField fx:id="username" layoutX="30.0" layoutY="149.0" prefHeight="34.0" prefWidth="247.0" promptText="Entre username" />
+            <Label layoutX="31.0" layoutY="93.0" prefHeight="45.0" prefWidth="126.0" text="Login" textFill="#6f864f">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="signin" layoutX="66.0" layoutY="251.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="176.0" text="Sign In" />
+            <Button fx:id="signup" layoutX="66.0" layoutY="306.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="176.0" text="Sign Up" />
+            <Label layoutX="188.0" layoutY="403.0" text="Powered by GreenWay" textFill="#d7c193" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
