@@ -3,38 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MAIN;
-
-import Entites.Client;
-import Entites.Evaluation;
-import Services.ClientService;
-import Services.EvaluationService;
-import java.sql.Date;
-import java.sql.SQLException;
+package Main;
 
 /**
  *
  * @author Sirine
  */
+import Entites.Materiaux;
+import Services.MateriauxService;
+import Entites.Evaluation;
+import Services.EvaluationService;
+import java.sql.SQLException;
+
 public class main {
 
     /**
      *
      * @param args
+     * @throws SQLException
      */
     public static void main(String[] args) throws SQLException {
-        java.sql.Date date = java.sql.Date.valueOf("2021-06-09");
-        java.sql.Date date1 = java.sql.Date.valueOf("2024-07-02");
+        MateriauxService m1 = new MateriauxService();
+        Materiaux m = new Materiaux("zaz", "3", "mm", "poo");
+        Materiaux m2 = new Materiaux("doop", "6", "mm", "poo");
+        Materiaux m3 = new Materiaux("sirine", "89", "mm", "poo");
 
-//CLIENT
-        ClientService cl = new ClientService();
-        Client c = new Client(date);
-        Client c2 = new Client(date1);
-        // cl.modifierClient(11,c);
-        cl.ajouterClient(c2);
-        //cl.supprimerClient(11);
-        // System.out.println(cl.afficherClient());
-        
+        //Client c2 = new Client(date1);
+        //m1.modifierMateriaux(1,m);
+       // m1.ajouterMateriaux(m3);
+//        m1.ajouterMateriaux(m2);
+
+       // m1.supprimerMateriaux(m3);
+       // System.out.println(m1.afficherMateriaux());
+       Materiaux m9 = new Materiaux();
+    m9.setType("Plastique");
+    m9.setTaux_recyclage("50%");
+    m9.setDuree_vie("365");
+    m9.setCondition_utilisation("Usage unique");
+    m1.ajouterMateriaux(m9);
+    
+    
 //EVALUATION        
         EvaluationService ev = new EvaluationService();
         Evaluation e = new Evaluation("lll", 10);
@@ -44,7 +52,5 @@ public class main {
         //ev.supprimerEvaluation(7);
      System.out.println( ev.afficherEvaluation());
         System.out.println("***");
-
     }
-
 }

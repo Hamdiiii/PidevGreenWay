@@ -9,16 +9,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Sirine
  */
 public class My_connection {
-
-  String url = "jdbc:mysql://localhost:3306/greenway_d";
+     String url = "jdbc:mysql://localhost:3306/greenway_d";
     String login = "root";
     String password = "";
     Connection myconnex;
@@ -45,7 +42,6 @@ public class My_connection {
         return myconnex;
     }
 
+   
 
-
-    
 }

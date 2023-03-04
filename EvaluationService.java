@@ -7,7 +7,6 @@ package Services;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import Entites.Client;
 import Entites.Evaluation;
 import java.util.List;
 import java.sql.*;
