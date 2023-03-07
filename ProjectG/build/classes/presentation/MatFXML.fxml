@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="824.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.MatFXMLController">
+    <stylesheets>
+        <URL value="@matfxml.css" />
+    </stylesheets>
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7fb56a" height="514.0" layoutX="-14.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="301.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="77.0" layoutX="380.0" layoutY="229.0" stroke="BLACK" strokeType="INSIDE" width="416.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#fcfffe" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="92.0" layoutX="409.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="355.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#fcfffe" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Text fx:id="type" layoutX="446.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" />
+      <Text fx:id="taux" layoutX="449.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poids :" />
+      <Text fx:id="duree" layoutX="386.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree de vie :" wrappingWidth="77.0000159740448" />
+      <Text fx:id="condition" layoutX="435.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="condition_utilisation" />
+      <ChoiceBox fx:id="combo2" layoutX="591.0" layoutY="317.0" prefWidth="150.0" />
+      <TableView fx:id="tableview" layoutX="494.0" layoutY="372.0" prefHeight="109.0" prefWidth="292.0">
+        <columns>
+          <TableColumn fx:id="Tp" prefWidth="61.33331298828125" text="Type" />
+          <TableColumn fx:id="tr" prefWidth="71.3333740234375" text="Poids recyclés" />
+            <TableColumn fx:id="dv" prefWidth="74.66665649414062" text="duree_vie" />
+            <TableColumn fx:id="cu" prefWidth="95.3333740234375" text="condition_utilisation" />
+        </columns>
+      </TableView>
+      <Text fill="WHITE" layoutX="54.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Materiaux">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button fx:id="ajbtn" layoutX="335.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="136.0" text="Créer un materiau" textFill="#7fb56a" />
+      <Button fx:id="supbtn" layoutX="334.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleSupprimer" text="Supprimer un materiau" textFill="#7fb56a" />
+      <Button fx:id="modifbtn" layoutX="334.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleModifier" prefHeight="25.0" prefWidth="139.0" text="Modifier un materiau" textFill="#7fb56a" />
+      <TextField fx:id="ttt" layoutX="525.0" layoutY="169.0" />
+      <Button fx:id="calcul" layoutX="650.0" layoutY="249.0" mnemonicParsing="false" onAction="#calculerDureeVie" text="Calculer durée de vie" />
+      <DatePicker fx:id="date" layoutX="467.0" layoutY="241.0" prefHeight="25.0" prefWidth="166.0" />
+      <TextField fx:id="result" layoutX="468.0" layoutY="262.0" prefHeight="25.0" prefWidth="166.0" />
+      <TextField fx:id="recy" layoutX="525.0" layoutY="145.0" />
+      <TextField fx:id="mater" layoutX="524.0" layoutY="120.0" promptText="Entrer poids" />
+      <Button fx:id="tauxc" layoutX="686.0" layoutY="147.0" mnemonicParsing="false" onAction="#handlecalcul" prefHeight="25.0" prefWidth="69.0" text="Calculer " />
+      <ImageView fx:id="image" fitHeight="105.0" fitWidth="182.0" layoutX="-17.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/Sans%20titre(2).png" />
+         </image>
+      </ImageView>
+      <Text layoutX="435.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poids recyclés" />
+      <Text layoutX="399.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'ajout" />
+      <Text layoutX="432.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poids non recyclé" />
+      <ComboBox fx:id="combo1" layoutX="542.0" layoutY="68.0" prefHeight="25.0" prefWidth="149.0" />
+      <Button fx:id="ici" layoutX="187.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleYoutube" text="ici" />
+      <TextArea layoutX="19.0" layoutY="156.0" prefHeight="96.0" prefWidth="226.0" text="Pour mieux comprendre&#10; l'importance du choix &#10;des caracteristiques de &#10;votre materiau checkez ce video" />
+      <TextField fx:id="filterField" layoutX="501.0" layoutY="18.0" promptText="search" />
+   </children>
+</AnchorPane>
