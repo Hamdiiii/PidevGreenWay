@@ -3,54 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package tn.esprit.greenWay.presentation;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 /**
  *
  * @author Sirine
  */
-import Entites.Materiaux;
-import Services.MateriauxService;
-import Entites.Evaluation;
-import Services.EvaluationService;
-import java.sql.SQLException;
+public class Main extends Application {
 
-public class main {
-
-    /**
-     *
-     * @param args
-     * @throws SQLException
-     */
-    public static void main(String[] args) throws SQLException {
-        MateriauxService m1 = new MateriauxService();
-        Materiaux m = new Materiaux("zaz", "3", "mm", "poo");
-        Materiaux m2 = new Materiaux("doop", "6", "mm", "poo");
-        Materiaux m3 = new Materiaux("sirine", "89", "mm", "poo");
-
-        //Client c2 = new Client(date1);
-        //m1.modifierMateriaux(1,m);
-       // m1.ajouterMateriaux(m3);
-//        m1.ajouterMateriaux(m2);
-
-       // m1.supprimerMateriaux(m3);
-       // System.out.println(m1.afficherMateriaux());
-       Materiaux m9 = new Materiaux();
-    m9.setType("Plastique");
-    m9.setTaux_recyclage("50%");
-    m9.setDuree_vie("365");
-    m9.setCondition_utilisation("Usage unique");
-    m1.ajouterMateriaux(m9);
-    
-    
-//EVALUATION        
-        EvaluationService ev = new EvaluationService();
-        Evaluation e = new Evaluation("lll", 10);
-        Evaluation e2 = new Evaluation("mmm", 10);
-       // ev.ajouterEvaluation(e);
-       // ev.modifierEvaluation(3,e);
-        //ev.supprimerEvaluation(7);
-     System.out.println( ev.afficherEvaluation());
-        System.out.println("***");
+    @Override
+    public void start(Stage stage) throws Exception {
+      try{
+        Parent root =FXMLLoader.load(getClass().getResource("/presentation/LoginFXML.fxml"));
+        Scene scene= new Scene (root);
+       stage.setScene(scene) ;
+       //stage.setResizable(false);
+       stage.show();
+        
+    }catch (Exception ex){
+          System.out.println(ex.getMessage());
     }
+    
+    }
+     /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args){
+        launch(args);
+   }
+    
 }
