@@ -3,8 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,38 +11,28 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="675.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.green.presentation.EvalFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="481.0" prefWidth="675.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.EvalFXMLController">
     <stylesheets>
         <URL value="@evalfxml.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7eb26959" height="334.0" layoutX="156.0" layoutY="29.0" stroke="BLACK" strokeType="INSIDE" width="376.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7eb26959" height="349.0" layoutX="172.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="376.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7fb56a" height="506.0" layoutX="-77.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
       <Text fill="#f6f2f2" layoutX="5.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVALUATION" wrappingWidth="167.33416748046875">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextArea fx:id="comment" layoutX="263.0" layoutY="194.0" prefHeight="148.0" prefWidth="176.0" />
-      <Text fx:id="comnt" layoutX="181.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commentaire" />
-      <Text fx:id="client" layoutX="198.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Client" />
-      <TextField fx:id="clientid" layoutX="272.0" layoutY="74.0" />
-      <Button fx:id="ajoutev" layoutX="551.0" layoutY="169.0" mnemonicParsing="false" onAction="#ajouterEv" prefHeight="25.0" prefWidth="72.0" text="Ajouter" textFill="#7fb56a" />
-      <Button fx:id="suppev" layoutX="551.0" layoutY="126.0" mnemonicParsing="false" onAction="#suppEv" text="Supprimer" textFill="#7fb56a" />
+      <TextArea fx:id="comment" layoutX="301.0" layoutY="238.0" prefHeight="148.0" prefWidth="176.0" />
+      <Text fx:id="comnt" layoutX="207.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commentaire" />
+      <Text fx:id="client" layoutX="220.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Client" />
+      <TextField fx:id="clientid" layoutX="311.0" layoutY="99.0" />
+      <Button fx:id="ajoutev" layoutX="568.0" layoutY="241.0" mnemonicParsing="false" onAction="#ajouterEv" prefHeight="25.0" prefWidth="72.0" text="Ajouter" textFill="#7fb56a" />
       <Button fx:id="btn" layoutX="3.0" layoutY="476.0" mnemonicParsing="false" onAction="#btnRetour" />
-      <TableView fx:id="tabEV" layoutX="431.0" layoutY="374.0" prefHeight="107.0" prefWidth="225.0">
-        <columns>
-          <TableColumn fx:id="cltv" prefWidth="83.66668701171875" text="client" />
-            <TableColumn fx:id="rat" prefWidth="75.0" text="rating" />
-          <TableColumn fx:id="comtv" prefWidth="73.66668701171875" text="commentaire" />
-        </columns>
-      </TableView>
-      <Rating fx:id="rating" layoutX="255.0" layoutY="138.0" />
-      <Text fx:id="rata" layoutX="198.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
-      <Label fx:id="msg" layoutX="288.0" layoutY="169.0" prefHeight="25.0" prefWidth="118.0" />
-      <TextField fx:id="recipientField" layoutX="272.0" layoutY="109.0" />
-      <Label fx:id="emailMsg" layoutX="249.0" layoutY="466.0" text="Label" />
-      <TextField fx:id="pass" layoutX="277.0" layoutY="462.0" />
-      <Text layoutX="200.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+      <Rating fx:id="rating" layoutX="301.0" layoutY="165.0" />
+      <Text fx:id="rata" layoutX="222.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
+      <Label fx:id="msg" layoutX="330.0" layoutY="202.0" prefHeight="25.0" prefWidth="118.0" />
+      <TextField fx:id="recipientField" layoutX="310.0" layoutY="134.0" />
+      <Text layoutX="221.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
    </children>
 </AnchorPane>

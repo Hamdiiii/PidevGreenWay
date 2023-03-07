@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import services.EvaluationService;
 import java.io.IOException;
-import java.util.Date;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -34,7 +33,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import java.util.Properties;
-import javafx.scene.control.Alert;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.Transport;
@@ -59,19 +57,6 @@ public class EvalFXMLController implements Initializable {
     private TextField clientid;
     @FXML
     private Button ajoutev;
-
-    @FXML
-    private Button suppev;
-
-    @FXML
-    private TableView<Evaluation> tabEV;
-
-    @FXML
-    private TableColumn<Evaluation, String> comtv;
-    @FXML
-    private TableColumn<Evaluation, Integer> cltv;
-    @FXML
-    private TableColumn<Evaluation, Integer> rat;
     @FXML
     private Rating rating;
 
@@ -82,15 +67,9 @@ public class EvalFXMLController implements Initializable {
     @FXML
     private TextField recipientField;
 
-    @FXML
-    private Label emailMsg;
-    @FXML
-    private TextField pass;
+    private final String username = "sirine.rebai@esprit.tn";
+    private final String password = "siriner560";
 
-//    private final String username = "sirine.rebai@esprit.tn";
-//    private final String password = "siriner560";
-//    private final String smtpHost = "smtp.gmail.com";
-//    private final int smtpPort = 587;
     /**
      * Initializes the controller class.
      */
@@ -100,10 +79,6 @@ public class EvalFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comtv.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getContenu()));
-        rat.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getRating()));
-        cltv.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getId_personne()));
-        tabEV.setItems(data);
 
         rating.ratingProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -115,6 +90,8 @@ public class EvalFXMLController implements Initializable {
 
     }
 
+    private String lastRecipientEmail = "";
+
     @FXML
     void ajouterEv(ActionEvent event) throws MessagingException {
         String contenu = comment.getText();
@@ -125,108 +102,56 @@ public class EvalFXMLController implements Initializable {
         service.ajouterEvaluation(evaluation);
         data.add(evaluation);
         clearFields();
+        // Récupérer l'adresse e-mail du destinataire
+        String recipientEmail = recipientField.getText();
 
-//        String recipient = recipientField.getText();
-//        sendEmail(recipient);
-        String to = "daadsoufi01@gmail.com";
-        String from = "sirinerebai1234@gmail.com";
-        String host = "localhost";
-        String port = "25";
-        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
-        final String email = "sirinerebai1234@gmail.com";//
-       // final String password = "rpqfvaeulqwtgksd";
-       final String password = "hdgbz";
+        // Envoyer l'e-mail automatiquement à l'adresse e-mail précédente
+        if (!lastRecipientEmail.isEmpty()) {
+            sendEmail(recipientEmail, lastRecipientEmail);
+        }
 
-        Properties props = System.getProperties();
-        props.setProperty("mail.smtp.host", "smtp.gmail.com");
-        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.port", "587");
-        props.setProperty("mail.smtp.ssl.trust", "*");
-        props.setProperty("mail.smtp.starttls.enable", "true");
+        // Sauvegarder l'adresse e-mail du destinataire actuel pour une utilisation future
+        lastRecipientEmail = recipientEmail;
+    }
 
-        props.setProperty("mail.smtp.socketFactory.port", "465");
+    // Fonction d'envoi de l'e-mail
+    private void sendEmail(String recipientEmail, String lastRecipientEmail) {
+        final String username = "sirinerebai1234@gmail.com"; // votre adresse e-mail
+        final String password = "20136558"; // votre mot de passe
+
+        Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
-        props.put("mail.debug", "true");
-        props.put("mail.store.protocol", "pop3");
-        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
         Session session = Session.getInstance(props,
                 new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email, password);
+                return new PasswordAuthentication(username, password);
             }
         });
-        Message msg = new MimeMessage(session);
-        msg.setFrom(new InternetAddress(from));
-        msg.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(to, false));
-        msg.setSubject("Demande de parrainage ");
-        msg.setText("salem");
-        msg.setSentDate(new Date());
-        Transport.send(msg);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Demande de parrainage");
-        alert.setHeaderText("Demande envoyée!");
-        alert.showAndWait();
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(lastRecipientEmail));
+            message.setSubject("Email");
+            message.setText("Bonjour,\n\nMerci pour votre evaluation.");
+
+            Transport.send(message);
+
+            System.out.println("L'e-mail a été envoyé avec succès.");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-//    private void sendEmail(String recipient) throws AddressException, MessagingException {
-//
-//        Properties props = new Properties();
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//        props.put("mail.smtp.host", "smtp.gmail.com");
-//        props.put("mail.smtp.port", "587");
-//        props.put("mail.smtp.ssl.enable", "true");
-//        props.put("mail.smtp.socketFactory.port", "587");
-//        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//        props.put("mail.smtp.socketFactory.fallback", "false");
-//        Session session = Session.getInstance(props,
-//                new javax.mail.Authenticator() {
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(username, password);
-//            }
-//        });
-//        try {
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress("sirine.rebai@esprit.tn"));
-//            message.setRecipients(Message.RecipientType.TO,
-//                    InternetAddress.parse("sirinerebai1234@gmail.com"));
-//            Transport.send(message);
-//
-//        } catch (Exception ex) {
-//            System.out.println("Error sending email: " + ex.getMessage());
-//        }
-//    }
     void clearFields() {
         comment.setText("");
         msg.setText(String.valueOf(0));
         clientid.setText("");
-    }
-
-    @FXML
-    void suppEv(ActionEvent event
-    ) {
-        // Obtenez l'évaluation sélectionnée dans la TableView
-        Evaluation selectedEvaluation = tabEV.getSelectionModel().getSelectedItem();
-        if (selectedEvaluation != null) {
-            // Supprimez l'évaluation sélectionnée de la base de données
-            EvaluationService service = new EvaluationService();
-            boolean success = service.supprimerEvaluation(selectedEvaluation.getIdEvaluation());
-            if (success) {
-                // Obtenez la liste actuelle d'évaluations à partir de la TableView
-                ObservableList<Evaluation> evaluations = tabEV.getItems();
-                // Supprimez l'évaluation sélectionnée de la liste
-                evaluations.remove(selectedEvaluation);
-                // Réinitialiser la TableView avec la liste mise à jour
-                tabEV.setItems(evaluations);
-            } else {
-                // Traitement des erreurs si la suppression d'évaluation a échoué
-            }
-        } else {
-            // Aucune évaluation n'est sélectionnée dans la TableView
-        }
     }
 
     @FXML
